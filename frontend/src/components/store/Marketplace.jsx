@@ -29,7 +29,7 @@ const MOCK_PRODUCTS = [
     category: 'Equipment',
     price: 3500,
     rating: 4.9,
-    img: 'https://m.media-amazon.com/images/I/81I6nU9M7mL._SL1500_.jpg',
+    img: '/drip-irrigation-new.png',
     bgLight: true
   },
   {
@@ -38,7 +38,7 @@ const MOCK_PRODUCTS = [
     category: 'Seeds',
     price: 850,
     rating: 4.6,
-    img: 'https://m.media-amazon.com/images/I/71uL+mXy9CL._SL1500_.jpg',
+    img: '/wheat-seeds-new.png',
     bgLight: true
   },
   {
@@ -47,7 +47,7 @@ const MOCK_PRODUCTS = [
     category: 'Equipment',
     price: 550,
     rating: 4.7,
-    img: 'https://m.media-amazon.com/images/I/61x47K5XvNL._SL1500_.jpg',
+    img: '/pressure-sprayer-new.png',
     bgLight: true
   },
   {

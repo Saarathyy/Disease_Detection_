@@ -32,6 +32,82 @@ const LoadingSteps = () => {
   );
 };
 
+const DashboardLanguageDropdown = () => {
+  const { i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const languages = [
+    { code: 'en-IN', name: 'English', native: 'English' },
+    { code: 'hi-IN', name: 'Hindi', native: 'हिन्दी' },
+    { code: 'te-IN', name: 'Telugu', native: 'తెలుగు' },
+    { code: 'ta-IN', name: 'Tamil', native: 'தமிழ்' },
+    { code: 'mr-IN', name: 'Marathi', native: 'मराठी' },
+    { code: 'kn-IN', name: 'Kannada', native: 'ಕನ್ನಡ' },
+    { code: 'ml-IN', name: 'Malayalam', native: 'മലയാളം' }
+  ];
+
+  const currentLanguage = languages.find(l => l.code === i18n.language) || languages[0];
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative inline-block" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-3 px-6 py-3 bg-slate-900/80 border border-primary-500/30 rounded-2xl hover:border-primary-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.1)] group"
+      >
+        <Globe className="w-5 h-5 text-primary-400 group-hover:scale-110 transition-transform" />
+        <span className="text-sm font-black text-white uppercase tracking-widest">{currentLanguage.native}</span>
+        <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            className="absolute left-1/2 -translate-x-1/2 mt-3 w-64 rounded-[28px] border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.8)] z-[100] p-2"
+            style={{ backgroundColor: '#0f172a' }}
+          >
+            <div className="flex flex-col gap-1">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => {
+                    i18n.changeLanguage(lang.code);
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-2xl text-sm transition-all ${
+                    i18n.language === lang.code
+                      ? 'bg-primary-500 text-white font-black'
+                      : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  <div className="flex flex-col items-start">
+                    <span className="text-base font-bold leading-tight">{lang.native}</span>
+                    <span className={`text-[10px] font-bold tracking-widest uppercase ${i18n.language === lang.code ? 'text-white/70' : 'text-slate-500'}`}>
+                      {lang.name}
+                    </span>
+                  </div>
+                  {i18n.language === lang.code && <Check className="w-3.5 h-3.5" />}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 export const DiagnosticHub = () => {
   const [file, setFile] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -198,12 +274,17 @@ export const DiagnosticHub = () => {
           className="w-24 h-24 bg-primary-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
         />
         <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-2xl relative z-10">
-          {t('hub.title')}
+          KrishiNetra <span className="text-primary-400">AI</span>
         </h2>
   <p className="mt-6 max-w-2xl text-xl text-slate-300 mx-auto font-medium drop-shadow-md relative z-10">
     {t('hub.subtitle')}
   </p>
-      </motion.div >
+
+  {/* NEW: Primary Dashboard Language Dropdown */}
+  <div className="mt-10 flex justify-center relative z-[60]">
+    <DashboardLanguageDropdown />
+  </div>
+</motion.div >
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
         

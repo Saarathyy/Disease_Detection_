@@ -6,13 +6,13 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "Diagnostics",
-        history: "History & Calendar",
+        history: "History",
         store: "Marketplace",
         advisory: "Advisory",
         expertCall: "Expert Call"
       },
       hub: {
-        title: "CropVision AI",
+        title: "KrishiNetra AI",
         subtitle: "Upload an image of your crop condition or use Voice Intelligence to describe symptoms in your native language.",
         dragDrop: "Drag & drop your imagery",
         browse: "or click to browse local files (PNG, JPG)",
@@ -73,7 +73,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "निदान",
-        history: "इतिहास और पंचांग",
+        history: "इतिहास",
         store: "बाज़ार",
         advisory: "सलाह",
         expertCall: "विशेषज्ञ को कॉल करें"
@@ -140,7 +140,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "రోగనిర్ధారణ",
-        history: "చరిత్ర & క్యాలెండర్",
+        history: "చరిత్ర",
         store: "మార్కెట్‌ప్లేస్",
         advisory: "సలహా",
         expertCall: "నిపుణుడిని పిలవండి"
@@ -207,7 +207,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "நோய் கண்டறிதல்",
-        history: "வரலாறு & நாட்காட்டி",
+        history: "வரலாறு",
         store: "சந்தை",
         advisory: "ஆலோசனை",
         expertCall: "நிபுணரை அழைக்கவும்"
@@ -274,7 +274,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "निदान",
-        history: "इतिहास आणि दिनदर्शिका",
+        history: "इतिहास",
         store: "बाजारपेठ",
         advisory: "सल्ला",
         expertCall: "तज्ञांना कॉल करा"
@@ -341,7 +341,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "ರೋಗನಿರ್ಣಯ",
-        history: "ಇತಿಹಾಸ & ಕ್ಯಾಲೆಂಡರ್",
+        history: "ಇತಿಹಾಸ",
         store: "ಮಾರುಕಟ್ಟೆ",
         advisory: "ಸಲಹೆ",
         expertCall: "ತಜ್ಞರನ್ನು ಕರೆಯಿರಿ"
@@ -408,7 +408,7 @@ const resources = {
     translation: {
       nav: {
         diagnostics: "രോഗനിർണ്ണയം",
-        history: "ചരിത്രം & കലണ്ടർ",
+        history: "ചരിത്രം",
         store: "മാർക്കറ്റ്പ്ലേസ്",
         advisory: "ഉപദേശം",
         expertCall: "വിദഗ്ധനെ വിളിക്കുക"
