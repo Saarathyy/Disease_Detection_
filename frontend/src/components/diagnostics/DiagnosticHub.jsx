@@ -6,94 +6,16 @@ import { ResultCard } from './ResultCard';
 import { fadeIn, staggerContainer, floatingAnimation, breathingGlow } from '../../utils/animations';
 import { useTranslation } from 'react-i18next';
 
-const LANGUAGES = [
-  { value: 'en-IN', label: 'English', native: 'English (India)', flag: '🇮🇳' },
-  { value: 'hi-IN', label: 'Hindi',   native: 'हिन्दी',           flag: '🇮🇳' },
-  { value: 'te-IN', label: 'Telugu',  native: 'తెలుగు',           flag: '🇮🇳' },
-  { value: 'ta-IN', label: 'Tamil',   native: 'தமிழ்',            flag: '🇮🇳' },
-  { value: 'mr-IN', label: 'Marathi', native: 'मराठी',            flag: '🇮🇳' },
-  { value: 'kn-IN', label: 'Kannada', native: 'ಕನ್ನಡ',            flag: '🇮🇳' },
-  { value: 'ml-IN', label: 'Malayalam', native: 'മലയാളം',         flag: '🇮🇳' },
-];
-
-const LanguageSelector = ({ value, onChange }) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  const selected = LANGUAGES.find(l => l.value === value) || LANGUAGES[0];
-
-  useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
-  return (
-    <div ref={ref} className="relative">
-      {/* Trigger button */}
-      <button
-        onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-slate-900/60 border border-white/15 hover:border-primary-500/50 backdrop-blur-md text-white text-sm font-semibold transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_20px_rgba(16,185,129,0.15)] min-w-[180px] justify-between"
-      >
-        <span className="flex items-center gap-2">
-          <span className="text-base">{selected.flag}</span>
-          <span className="text-white">{selected.label}</span>
-          <span className="text-slate-400 font-normal text-xs">{selected.native}</span>
-        </span>
-        <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-      </button>
-
-      {/* Dropdown panel */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
-            transition={{ duration: 0.15 }}
-            className="absolute top-full mt-2 left-0 right-0 z-[999] rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden"
-          >
-            {LANGUAGES.map((lang) => {
-              const isActive = lang.value === value;
-              return (
-                <button
-                  key={lang.value}
-                  onClick={() => { onChange(lang.value); setOpen(false); }}
-                  className={`w-full flex items-center justify-between px-4 py-3 text-sm transition-all duration-150 ${
-                    isActive
-                      ? 'bg-primary-500/15 text-primary-300'
-                      : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-base">{lang.flag}</span>
-                    <span className="font-semibold">{lang.label}</span>
-                    <span className="text-slate-500 text-xs">{lang.native}</span>
-                  </span>
-                  {isActive && <Check className="w-4 h-4 text-primary-400" />}
-                </button>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-const LOADING_STEPS = [
-  'Transcribing your voice...',
-  'Identifying crop symptoms...',
-  'Diagnosing disease...',
-  'Preparing treatment plan...',
-  'Almost ready...',
-];
-
 const LoadingSteps = () => {
+  const { t } = useTranslation();
+  const STEPS = t('hub.loadingSteps', { returnObjects: true });
   const [step, setStep] = useState(0);
+
   useEffect(() => {
-    const id = setInterval(() => setStep(s => (s + 1) % LOADING_STEPS.length), 2200);
+    const id = setInterval(() => setStep(s => (s + 1) % STEPS.length), 2200);
     return () => clearInterval(id);
-  }, []);
+  }, [STEPS.length]);
+
   return (
     <AnimatePresence mode="wait">
       <motion.p
@@ -104,7 +26,7 @@ const LoadingSteps = () => {
         transition={{ duration: 0.3 }}
         className="text-indigo-300 text-sm font-medium"
       >
-        {LOADING_STEPS[step]}
+        {STEPS[step]}
       </motion.p>
     </AnimatePresence>
   );
@@ -276,16 +198,15 @@ export const DiagnosticHub = () => {
            className="w-24 h-24 bg-primary-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
         />
         <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-2xl relative z-10">
+<<<<<<< Updated upstream
           KrishiNetra <span className="text-primary-400">AI</span>
+=======
+          {t('hub.title')}
+>>>>>>> Stashed changes
         </h2>
         <p className="mt-6 max-w-2xl text-xl text-slate-300 mx-auto font-medium drop-shadow-md relative z-10">
           {t('hub.subtitle')}
         </p>
-        
-        <div className="mt-8 flex justify-center items-center gap-3">
-            <Globe className="w-5 h-5 text-primary-400" />
-            <LanguageSelector value={language} onChange={(val) => i18n.changeLanguage(val)} />
-        </div>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
@@ -387,7 +308,7 @@ export const DiagnosticHub = () => {
 
                     {/* Animated loading steps */}
                     <div className="flex flex-col items-center gap-2 text-center px-6">
-                      <p className="text-white font-bold text-lg">Analyzing Voice</p>
+                      <p className="text-white font-bold text-lg">{t('hub.analyzingVoice')}</p>
                       <LoadingSteps />
                     </div>
                   </motion.div>
@@ -442,7 +363,7 @@ export const DiagnosticHub = () => {
                   <div>
                     <h3 className="text-white font-bold text-2xl mb-1 drop-shadow-md">{t('hub.voiceTitle')}</h3>
                     <p className="text-slate-400 font-medium text-sm max-w-[220px] mx-auto leading-relaxed">
-                      {isRecording ? 'Tap again to stop & analyze' : t('hub.voiceSubtitle')}
+                      {isRecording ? t('hub.tapToStop') : t('hub.voiceSubtitle')}
                     </p>
                     <div className="mt-5">
                       <span className={`inline-block px-4 py-1.5 rounded-full border font-bold text-xs tracking-widest uppercase shadow-sm transition-all duration-300 ${

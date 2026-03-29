@@ -64,6 +64,12 @@ async def connect_to_postgres():
                     EXCEPTION WHEN others THEN
                         NULL; -- ignore if already correct size
                     END $$;
+                    DO $$
+                    BEGIN
+                        ALTER TABLE users ADD COLUMN phone_number VARCHAR(20);
+                    EXCEPTION WHEN others THEN
+                        NULL;
+                    END $$;
                 """)
             )
         log.info("Neon Tables generated and connection secured.")
