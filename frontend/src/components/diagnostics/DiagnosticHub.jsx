@@ -60,30 +60,30 @@ export const DiagnosticHub = () => {
     }
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
-    onDrop, 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
     accept: { 'image/*': [] },
-    maxFiles: 1 
+    maxFiles: 1
   });
 
   const handleAnalyze = async () => {
     if (!file) return;
     setLoading(true);
-    
+
     try {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("language", language);
-      
+
       const response = await fetch("http://localhost:8000/api/diagnostics/analyze-image", {
-         method: "POST",
-         body: formData,
+        method: "POST",
+        body: formData,
       });
 
       if (!response.ok) {
-         throw new Error("Analysis failed");
+        throw new Error("Analysis failed");
       }
-      
+
       const data = await response.json();
       setResult(data);
     } catch (error) {
@@ -102,8 +102,8 @@ export const DiagnosticHub = () => {
       const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
         ? 'audio/webm;codecs=opus'
         : MediaRecorder.isTypeSupported('audio/webm')
-        ? 'audio/webm'
-        : 'audio/ogg';
+          ? 'audio/webm'
+          : 'audio/ogg';
 
       const mediaRecorder = new MediaRecorder(stream, { mimeType });
       mediaRecorderRef.current = mediaRecorder;
@@ -129,25 +129,25 @@ export const DiagnosticHub = () => {
 
         setVoiceLoading(true);
         try {
-           const formData = new FormData();
-           formData.append("voice_note", audioBlob, "symptoms.webm");
-           formData.append("language", currentLang);
+          const formData = new FormData();
+          formData.append("voice_note", audioBlob, "symptoms.webm");
+          formData.append("language", currentLang);
 
-           const response = await fetch("http://localhost:8000/api/diagnostics/analyze-voice", {
-             method: "POST",
-             body: formData,
-           });
+          const response = await fetch("http://localhost:8000/api/diagnostics/analyze-voice", {
+            method: "POST",
+            body: formData,
+          });
 
-           if (!response.ok) throw new Error("Voice RAG analysis failed");
+          if (!response.ok) throw new Error("Voice RAG analysis failed");
 
-           const data = await response.json();
-           setResult(data);
-        } catch(err) {
-           console.error(err);
-           alert("Failed to analyze voice. Ensure backend is running.");
+          const data = await response.json();
+          setResult(data);
+        } catch (err) {
+          console.error(err);
+          alert("Failed to analyze voice. Ensure backend is running.");
         } finally {
-           setVoiceLoading(false);
-           stream.getTracks().forEach(track => track.stop());
+          setVoiceLoading(false);
+          stream.getTracks().forEach(track => track.stop());
         }
       };
 
@@ -171,43 +171,39 @@ export const DiagnosticHub = () => {
   };
 
   const stopRecording = () => {
-     if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
-        mediaRecorderRef.current.stop();
-        setIsRecording(false);
-     }
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
   };
 
   const toggleRecording = () => {
-     if (isRecording) {
-        stopRecording();
-     } else {
-        startRecording();
-     }
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       <motion.div variants={fadeIn} className="text-center mb-16 relative z-50">
-        <motion.div 
-           animate={floatingAnimation}
-           className="w-24 h-24 bg-primary-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+        <motion.div
+          animate={floatingAnimation}
+          className="w-24 h-24 bg-primary-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
         />
         <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-2xl relative z-10">
-<<<<<<< Updated upstream
-          KrishiNetra <span className="text-primary-400">AI</span>
-=======
           {t('hub.title')}
->>>>>>> Stashed changes
         </h2>
-        <p className="mt-6 max-w-2xl text-xl text-slate-300 mx-auto font-medium drop-shadow-md relative z-10">
-          {t('hub.subtitle')}
-        </p>
-      </motion.div>
+  <p className="mt-6 max-w-2xl text-xl text-slate-300 mx-auto font-medium drop-shadow-md relative z-10">
+    {t('hub.subtitle')}
+  </p>
+      </motion.div >
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative z-10">
         
@@ -385,6 +381,6 @@ export const DiagnosticHub = () => {
       <AnimatePresence>
         {result && <ResultCard result={result} language={language} />}
       </AnimatePresence>
-    </motion.div>
+    </motion.div >
   );
 };
