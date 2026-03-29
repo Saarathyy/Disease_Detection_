@@ -47,7 +47,7 @@ def _compress_image(file_bytes: bytes, filename: str) -> tuple[bytes, str]:
 _PROMPT = """You are an agricultural plant pathologist AI.
 Analyze this crop image and respond ONLY in {lang_name} language.
 Do NOT use any other language. Every word must be in {lang_name}.
-Return ONLY this JSON (no extra text):
+Return ONLY this JSON (no extra text, NO inner quotes or markdown):
 {{"disease":"<{lang_name}>","confidence":<0.0-1.0>,"treatment_chemical":"<{lang_name}>","treatment_organic":"<{lang_name}>","climate_impact":"<{lang_name}>"}}"""
 
 import asyncio

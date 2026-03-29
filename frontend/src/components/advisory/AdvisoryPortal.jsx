@@ -4,14 +4,14 @@ import { Lightbulb, Info, FileText, Briefcase, ChevronRight, Target } from 'luci
 import { staggerContainer, fadeIn, scaleUp } from '../../utils/animations';
 
 const CONTRACT_OPPS = [
-  { id: 1, buyer: 'ITC Agri Business', crop: 'Organic Wheat', demand: '500 Quintals', price: '₹2,500/Qtl', duration: '6 Months', location: 'Maharashtra' },
-  { id: 2, buyer: 'Reliance Fresh', crop: 'Tomatoes', demand: '200 Quintals', price: '₹1,200/Qtl', duration: '3 Months', location: 'Karnataka' },
-  { id: 3, buyer: 'Patanjali Ayurved', crop: 'Aloe Vera', demand: '1000 Kg', price: '₹40/Kg', duration: 'Annual', location: 'Rajasthan' },
+  { id: 1, buyer: 'ITC Agri Business', crop: 'Organic Wheat', demand: '500 Quintals', price: '₹2,500/Qtl', duration: '6 Months', location: 'Maharashtra', url: 'https://www.itcportal.com/businesses/agri-business/e-choupal.aspx' },
+  { id: 2, buyer: 'Dabur', crop: 'Stevia', demand: '20 tons', price: '₹100/kg', duration: 'Annual', location: 'Karnataka', url: 'https://www.dabur.com' },
+  { id: 3, buyer: 'Patanjali Ayurved', crop: 'Aloe Vera', demand: '1000 Kg', price: '₹40/Kg', duration: 'Annual', location: 'Rajasthan', url: 'https://patanjaliayurved.org/contract-herbal-farming.html' },
 ];
 
 export const AdvisoryPortal = () => {
   return (
-    <motion.div 
+    <motion.div
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
@@ -26,44 +26,44 @@ export const AdvisoryPortal = () => {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        
+
         {/* RAG Suggestions Box */}
         <motion.div variants={fadeIn} className="lg:col-span-1 space-y-8">
-          
+
           <div className="glass-panel border-amber-500/30 rounded-3xl p-8 relative overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.1)]">
-             <div className="absolute inset-0 bg-gradient-to-br from-amber-900/40 to-orange-900/10 z-[0]" />
-             <div className="absolute -right-10 -top-10 opacity-20 z-[0] transform rotate-12 blur-sm">
-               <Lightbulb className="w-56 h-56 text-amber-500" />
-             </div>
-             
-             <h3 className="text-2xl font-black text-amber-300 mb-8 flex items-center gap-2 relative z-10 drop-shadow-md">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-900/40 to-orange-900/10 z-[0]" />
+            <div className="absolute -right-10 -top-10 opacity-20 z-[0] transform rotate-12 blur-sm">
+              <Lightbulb className="w-56 h-56 text-amber-500" />
+            </div>
+
+            <h3 className="text-2xl font-black text-amber-300 mb-8 flex items-center gap-2 relative z-10 drop-shadow-md">
               <Target className="w-7 h-7 text-amber-400" /> Daily Smart Insight
-             </h3>
-             
-             <div className="space-y-6 relative z-10">
-                <div className="flex gap-4 text-white">
-                  <Info className="w-7 h-7 shrink-0 text-amber-400 mt-0.5 drop-shadow-md" />
-                  <p className="font-medium text-base text-slate-200 leading-relaxed tracking-wide">
-                    Based on local humidity trends (85%), there is a severe warning for <strong className="text-amber-300">Leaf Rust</strong>. Preemptive spraying of Copper Oxychloride is highly recommended for Northern sectors before tomorrow's light rains.
-                  </p>
+            </h3>
+
+            <div className="space-y-6 relative z-10">
+              <div className="flex gap-4 text-white">
+                <Info className="w-7 h-7 shrink-0 text-amber-400 mt-0.5 drop-shadow-md" />
+                <p className="font-medium text-base text-slate-200 leading-relaxed tracking-wide">
+                  Based on local humidity trends (85%), there is a severe warning for <strong className="text-amber-300">Leaf Rust</strong>. Preemptive spraying of Copper Oxychloride is highly recommended for Northern sectors before tomorrow's light rains.
+                </p>
+              </div>
+              <div className="flex gap-4 text-white">
+                <Target className="w-6 h-6 shrink-0 text-orange-400 mt-1 drop-shadow-md" />
+                <div className="text-slate-200">
+                  <span className="block font-black text-orange-300 mb-1 tracking-wide">Market Tip:</span>
+                  Organic Rice premiums have jumped by 15% due to export demands. Ensure organic certification is up to date ahead of the harvest.
                 </div>
-                <div className="flex gap-4 text-white">
-                   <Target className="w-6 h-6 shrink-0 text-orange-400 mt-1 drop-shadow-md" />
-                   <div className="text-slate-200">
-                      <span className="block font-black text-orange-300 mb-1 tracking-wide">Market Tip:</span>
-                      Organic Rice premiums have jumped by 15% due to export demands. Ensure organic certification is up to date ahead of the harvest.
-                   </div>
-                </div>
-             </div>
+              </div>
+            </div>
           </div>
 
           <div className="glass-card rounded-3xl p-8 flex flex-col items-center justify-center text-center border-t border-emerald-500/30">
-             <div className="p-5 bg-emerald-900/40 rounded-full mb-6 border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-               <FileText className="w-10 h-10 text-emerald-400" />
-             </div>
-             <h4 className="font-extrabold text-white text-xl drop-shadow-md">Crop Insurance Portal</h4>
-             <p className="font-medium text-slate-400 mt-3 mb-8 tracking-wide">File claims directly or renew your Pradhan Mantri Fasal Bima Yojana (PMFBY) premium effortlessly.</p>
-             <button className="w-full py-4 bg-emerald-500/20 text-emerald-300 font-black tracking-widest uppercase rounded-2xl hover:bg-emerald-500/40 border border-emerald-500/50 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">Access Portal</button>
+            <div className="p-5 bg-emerald-900/40 rounded-full mb-6 border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+              <FileText className="w-10 h-10 text-emerald-400" />
+            </div>
+            <h4 className="font-extrabold text-white text-xl drop-shadow-md">Crop Insurance Portal</h4>
+            <p className="font-medium text-slate-400 mt-3 mb-8 tracking-wide">File claims directly or renew your Pradhan Mantri Fasal Bima Yojana (PMFBY) premium effortlessly.</p>
+            <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-emerald-500/20 text-emerald-300 font-black tracking-widest uppercase rounded-2xl hover:bg-emerald-500/40 border border-emerald-500/50 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] text-center">Access Portal</a>
           </div>
 
         </motion.div>
@@ -78,10 +78,10 @@ export const AdvisoryPortal = () => {
               3 Active Requests
             </span>
           </div>
-          
+
           <div className="space-y-5">
             {CONTRACT_OPPS.map((contract) => (
-              <motion.div 
+              <motion.div
                 key={contract.id}
                 variants={scaleUp}
                 className="group flex flex-col xl:flex-row xl:items-center justify-between p-6 glass-card rounded-2xl border-white/5 hover:border-indigo-500/40 transition-all duration-500"
@@ -91,22 +91,27 @@ export const AdvisoryPortal = () => {
                     {contract.crop} for <span className="text-indigo-300">{contract.buyer}</span>
                   </h4>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-slate-300 font-bold tracking-wide">
-                     <span className="bg-slate-900/60 shadow-inner px-3 py-1.5 rounded-lg border border-white/10">Demand: {contract.demand}</span>
-                     <span className="bg-emerald-900/30 text-emerald-400 shadow-inner px-3 py-1.5 rounded-lg border border-emerald-500/30">Rate: {contract.price}</span>
-                     <span className="bg-slate-900/60 shadow-inner px-3 py-1.5 rounded-lg border border-white/10">{contract.duration}</span>
+                    <span className="bg-slate-900/60 shadow-inner px-3 py-1.5 rounded-lg border border-white/10">Demand: {contract.demand}</span>
+                    <span className="bg-emerald-900/30 text-emerald-400 shadow-inner px-3 py-1.5 rounded-lg border border-emerald-500/30">Rate: {contract.price}</span>
+                    <span className="bg-slate-900/60 shadow-inner px-3 py-1.5 rounded-lg border border-white/10">{contract.duration}</span>
                   </div>
                 </div>
-                <button className="self-start xl:self-center flex items-center gap-2 bg-indigo-600/30 text-indigo-300 border border-indigo-500/50 hover:bg-indigo-500 hover:text-white px-6 py-3 rounded-xl font-black uppercase tracking-wider transition-all shadow-lg group-hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] whitespace-nowrap">
+                <a
+                  href={contract.url || "#"}
+                  target={contract.url ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="self-start xl:self-center flex items-center gap-2 bg-indigo-600/30 text-indigo-300 border border-indigo-500/50 hover:bg-indigo-500 hover:text-white px-6 py-3 rounded-xl font-black uppercase tracking-wider transition-all shadow-lg group-hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] whitespace-nowrap"
+                >
                   Apply Now <ChevronRight className="w-5 h-5" />
-                </button>
+                </a>
               </motion.div>
             ))}
           </div>
-          
+
           <div className="mt-10 text-center">
-             <button className="text-slate-400 font-bold uppercase tracking-widest text-sm hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">
-               Load More Opportunities...
-             </button>
+            <button className="text-slate-400 font-bold uppercase tracking-widest text-sm hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">
+              Load More Opportunities...
+            </button>
           </div>
 
         </motion.div>

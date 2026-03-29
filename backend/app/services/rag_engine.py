@@ -21,7 +21,7 @@ LANG_NAMES = {
 _PROMPT = """You are an agricultural AI agronomist.
 The farmer is speaking in {lang_name}. Listen to the audio and diagnose the crop issue.
 Respond ONLY in {lang_name} language. Do NOT use any other language.
-Return ONLY this JSON (no extra text):
+Return ONLY this JSON (no extra text, NO inner quotes or markdown):
 {{"disease":"<{lang_name}>","confidence":<0.0-1.0>,"treatment_chemical":"<{lang_name}>","treatment_organic":"<{lang_name}>","climate_impact":"<{lang_name}>"}}"""
 
 import asyncio

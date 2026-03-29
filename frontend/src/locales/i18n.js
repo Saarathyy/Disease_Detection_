@@ -12,7 +12,7 @@ const resources = {
         expertCall: "Expert Call"
       },
       hub: {
-        title: "Crop Diagnostics Hub",
+        title: "KrishiNetra AI",
         subtitle: "Upload an image of your crop condition or use Voice Intelligence to describe symptoms in your native language.",
         dragDrop: "Drag & drop your imagery",
         browse: "or click to browse local files (PNG, JPG)",

@@ -35,7 +35,7 @@ const PremiumNavbar = () => {
              <div className="p-1.5 bg-primary-900/60 rounded-full border border-primary-500/40 group-hover:bg-primary-500/30 transition-colors shadow-[0_0_10px_rgba(16,185,129,0.2)]">
                 <Sprout className="w-5 h-5" />
              </div>
-             <span className="text-xl font-black tracking-tighter drop-shadow-md text-white">Crop<span className="text-primary-400">Vision</span></span>
+             <span className="text-xl font-black tracking-tighter drop-shadow-md text-white">KrishiNetra <span className="text-primary-400">AI</span></span>
           </Link>
 
           <div className="hidden md:flex bg-slate-950/40 px-2 py-1.5 rounded-full border border-white/5 items-center gap-2">

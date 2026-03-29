@@ -276,7 +276,7 @@ export const DiagnosticHub = () => {
            className="w-24 h-24 bg-primary-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
         />
         <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-2xl relative z-10">
-          Crop <span className="text-primary-400">Diagnostics</span> Hub
+          KrishiNetra <span className="text-primary-400">AI</span>
         </h2>
         <p className="mt-6 max-w-2xl text-xl text-slate-300 mx-auto font-medium drop-shadow-md relative z-10">
           {t('hub.subtitle')}

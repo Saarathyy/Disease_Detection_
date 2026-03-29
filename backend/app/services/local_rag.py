@@ -7,6 +7,7 @@ import logging
 import asyncio
 import numpy as np
 import faiss
+from typing import Optional
 from sentence_transformers import SentenceTransformer
 from app.services.crop_knowledge import CROP_KNOWLEDGE
 
@@ -70,7 +71,7 @@ def _query_sync(query_text: str, top_k: int = 1) -> tuple[dict, float]:
     best_entry = _entries[indices[0][0]]
     return best_entry, best_score
 
-async def query(query_text: str, language: str = "en-IN", confidence_threshold: float = 0.45) -> tuple[dict | None, float]:
+async def query(query_text: str, language: str = "en-IN", confidence_threshold: float = 0.45) -> tuple[Optional[dict], float]:
     """
     Query the local RAG index.
     Returns (result_dict, score) if score >= threshold, else (None, score).
